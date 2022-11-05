@@ -26,7 +26,7 @@ namespace Heroes
             Console.WriteLine($"Weapons: {CurrentCharacter.Inventory.ToList().Count}");
             foreach (var weapon in CurrentCharacter.Inventory)
             {
-                Console.WriteLine($"[{weapon.Rarity}] {weapon.Name} | Damage: {weapon.Damage} | Type: {weapon.Type} | Level: {weapon.Level}");
+                Console.WriteLine($"[{weapon.Rarity}] {weapon.Name} | Damage: {weapon.Damage} | Type: {weapon.Type} | Level: {weapon.Level} | Uses Left: {weapon.Degradation}");
 
             }
         }

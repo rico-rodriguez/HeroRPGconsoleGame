@@ -58,7 +58,7 @@ namespace Heroes
                 var weapon = 1;
                 foreach (var item in CurrentCharacter.Inventory)
                 {
-                    Console.WriteLine($"{item.Name}");
+                    Console.WriteLine($"{item.Name}, Damage: {item.Damage}, Level: {item.Level}, Rarity: {item.Rarity}, Uses Left: {item.Degradation}");
                     weapon++;
                 }
                 var input = int.TryParse(Console.ReadLine(), out var iresult) ? iresult : 0;
@@ -67,7 +67,15 @@ namespace Heroes
                 Console.WriteLine($"You attack the {monster.Name}!");
                 var damage = weaponChoice.CalculateDamage(weaponChoice);
                 monster.LoseHealth(monster, damage);
+                weaponChoice.Degradation--;
                 Console.WriteLine($"You deal {damage} damage to the {monster.Name}, he now has {monster.Health} health left.");
+                Console.WriteLine($"Your weapon has {weaponChoice.Degradation} uses left.");
+                if (weaponChoice.Degradation == 0)
+                {
+                    Console.WriteLine($"Your {weaponChoice.Name} has broken! A magical force teleports you back to your village.");
+                    CurrentCharacter.Inventory.Remove(weaponChoice);
+                    Adventure.AdventureStart();
+                }
                 if (monster.Health < 1)
                 {
                     Console.WriteLine($"You have defeated the {monster.Name}!");
