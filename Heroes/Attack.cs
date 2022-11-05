@@ -78,9 +78,9 @@ namespace Heroes
                     Console.ReadKey();
                     Adventure.AdventureStart();
                 }
-                Console.WriteLine("The goblin attacks you!");
+                Console.WriteLine($"The {monster.Name} attacks you!");
                 var goblinDamage = random.Next(5, 15);
-                Console.WriteLine($"The goblin deals {goblinDamage} damage to you.");
+                Console.WriteLine($"The {monster.Name} deals {goblinDamage} damage to you.");
                 CurrentCharacter.LoseHealth(CurrentCharacter, CurrentCharacter.Health, goblinDamage);
                 Console.WriteLine($"You have {CurrentCharacter.Health} health left.");
                 if (CurrentCharacter.Health <= 0)
