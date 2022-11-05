@@ -3,8 +3,6 @@
 
     public class Weapon
     {
-        static Random rand = new Random(Guid.NewGuid().GetHashCode());
-
         public string Name { get; set; }
         public int Damage { get; set; }
         public int Level { get; set; }
