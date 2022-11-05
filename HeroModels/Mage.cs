@@ -22,7 +22,8 @@ namespace HeroModels
         public int Strength
         { get; set; }
 
-        public List<Weapon> Inventory { get; set; }
+        public List<Weapon> WeaponSack { get; set; }
+        public List<Food> FoodSack { get; set; }
 
         public string Attack(IHero hero)
         {

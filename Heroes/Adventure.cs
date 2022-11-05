@@ -5,11 +5,11 @@
         public static int AdventureStart()
         {
             Console.WriteLine("You have 5 options:");
-            Console.WriteLine("1. Go to the forest");
-            Console.WriteLine("2. Go to the mountains");
-            Console.WriteLine("3. Go to the sea");
-            Console.WriteLine("4. Train your character");
-            Console.WriteLine("5. Check your character's stats");
+            Console.WriteLine("1. Fight in the forest");
+            Console.WriteLine("2. Loot the mountains");
+            Console.WriteLine("3. Fish in the sea");
+            Console.WriteLine("4. Train");
+            Console.WriteLine("5. Check your stats");
             do
             {
                 var input = int.TryParse(Console.ReadLine(), out var iresult) ? iresult : 0;
@@ -22,7 +22,7 @@
                         Mountain.Start();
                         break;
                     case 3:
-                        //Sea.SeaStart();
+                        Sea.SeaStart();
                         break;
                     case 4:
                         Training.TrainingStart();

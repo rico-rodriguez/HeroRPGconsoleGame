@@ -23,8 +23,8 @@ namespace Heroes
             Console.WriteLine($"Experience: {CurrentCharacter.Experience}");
             Console.WriteLine($"Gold: {CurrentCharacter.Gold}");
             Console.WriteLine($"Strength: {CurrentCharacter.Strength}");
-            Console.WriteLine($"Weapons: {CurrentCharacter.Inventory.ToList().Count}");
-            foreach (var weapon in CurrentCharacter.Inventory)
+            Console.WriteLine($"Weapons: {CurrentCharacter.WeaponSack.ToList().Count}");
+            foreach (var weapon in CurrentCharacter.WeaponSack)
             {
                 Console.WriteLine($"[{weapon.Rarity}] {weapon.Name} | Damage: {weapon.Damage} | Type: {weapon.Type} | Level: {weapon.Level} | Uses Left: {weapon.Degradation}");
 

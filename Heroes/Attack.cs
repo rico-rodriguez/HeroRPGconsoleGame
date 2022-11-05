@@ -10,8 +10,8 @@ namespace Heroes
         {
             while (true)
             {
-                Console.WriteLine($"You open your inventory to see you have {CurrentCharacter.Inventory.ToList().Count} weapons.");
-                if (CurrentCharacter.Inventory.ToList().Count == 0)
+                Console.WriteLine($"You open your inventory to see you have {CurrentCharacter.WeaponSack.ToList().Count} weapons.");
+                if (CurrentCharacter.WeaponSack.ToList().Count == 0)
                 {
                     Console.WriteLine($"You have no items in your inventory. You cannot attack the {monster.Name}.");
                     Console.WriteLine("Press any key to continue your adventure!");
@@ -56,13 +56,13 @@ namespace Heroes
             {
                 Console.WriteLine("Which weapon would you like to use?");
                 var weapon = 1;
-                foreach (var item in CurrentCharacter.Inventory)
+                foreach (var item in CurrentCharacter.WeaponSack)
                 {
                     Console.WriteLine($"{item.Name}, Damage: {item.Damage}, Level: {item.Level}, Rarity: {item.Rarity}, Uses Left: {item.Degradation}");
                     weapon++;
                 }
                 var input = int.TryParse(Console.ReadLine(), out var iresult) ? iresult : 0;
-                var weaponChoice = CurrentCharacter.Inventory.ToList()[input - 1];
+                var weaponChoice = CurrentCharacter.WeaponSack.ToList()[input - 1];
                 Console.WriteLine($"You have chosen to use {weaponChoice.Name}.");
                 Console.WriteLine($"You attack the {monster.Name}!");
                 var damage = weaponChoice.CalculateDamage(weaponChoice);
@@ -73,7 +73,7 @@ namespace Heroes
                 if (weaponChoice.Degradation == 0)
                 {
                     Console.WriteLine($"Your {weaponChoice.Name} has broken! A magical force teleports you back to your village.");
-                    CurrentCharacter.Inventory.Remove(weaponChoice);
+                    CurrentCharacter.WeaponSack.Remove(weaponChoice);
                     Adventure.AdventureStart();
                 }
                 if (monster.Health < 1)

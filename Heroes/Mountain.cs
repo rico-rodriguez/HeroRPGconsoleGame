@@ -56,7 +56,7 @@ namespace Heroes
                         weapon.Type = weaponType[random.Next(0, weaponType.Count)];
                         weapon.Damage = weaponDamage[random.Next(0, weaponDamage.Count)];
                         weapon.Level = weaponLevel[random.Next(0, weaponLevel.Count)];
-                        CurrentCharacter.Inventory.Add(weapon);
+                        CurrentCharacter.WeaponSack.Add(weapon);
                         Console.WriteLine($"You have found a [level {weapon.Level}] [{weapon.Rarity}] ({weapon.Type} {weapon.Name})! It has {weapon.Degradation} uses left.");
                         Console.WriteLine("Press any key to continue your adventure!");
                         Console.ReadKey();
