@@ -16,10 +16,10 @@
                 switch (input)
                 {
                     case 1:
-                        Forest.ForestStart();
+                        Forest.Start();
                         break;
                     case 2:
-                        //Mountain.MountainStart();
+                        Mountain.Start();
                         break;
                     case 3:
                         //Sea.SeaStart();

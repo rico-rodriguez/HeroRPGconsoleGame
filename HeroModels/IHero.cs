@@ -14,7 +14,7 @@ namespace SolutionItems
         public int Experience { get; set; }
         public int Gold { get; set; }
         public int Strength { get; set; }
-        public List<Weapons> Inventory { get; set; }
+        public List<Weapon> Inventory { get; set; }
 
         public string Attack(IHero hero);
         public string LevelUp(IHero hero);

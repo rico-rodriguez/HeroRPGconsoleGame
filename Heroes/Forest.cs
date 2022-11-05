@@ -4,7 +4,7 @@ namespace Heroes
 {
     public class Forest
     {
-        public static int ForestStart()
+        public static int Start()
         {
             Console.WriteLine("You have entered the forest!");
             Console.WriteLine("In the forest you have 3 options:");
@@ -21,10 +21,12 @@ namespace Heroes
                         Attack.AttackMonster(goblin);
                         break;
                     case 2:
-                        //Troll.TrollStart();
+                        var troll = MonsterCreation.troll;
+                        Attack.AttackMonster(troll);
                         break;
                     case 3:
-                        //Dragon.DragonStart();
+                        var dragon = MonsterCreation.dragon;
+                        Attack.AttackMonster(dragon);
                         break;
                     default:
                         Console.WriteLine("You have not selected a valid option. Please try again.");

@@ -81,9 +81,9 @@ namespace Heroes
                     Adventure.AdventureStart();
                 }
                 Console.WriteLine($"The {monster.Name} attacks you!");
-                var goblinDamage = monster.AttackPlayer(monster, CurrentCharacter);
-                Console.WriteLine($"The {monster.Name} deals {goblinDamage} damage to you.");
-                CurrentCharacter.LoseHealth(CurrentCharacter, CurrentCharacter.Health, (int)goblinDamage);
+                var monsterDamage = monster.AttackPlayer(monster, CurrentCharacter);
+                Console.WriteLine($"The {monster.Name} deals {monsterDamage} damage to you.");
+                CurrentCharacter.LoseHealth(CurrentCharacter, CurrentCharacter.Health, (int)monsterDamage);
                 Console.WriteLine($"You have {CurrentCharacter.Health} health left.");
                 if (CurrentCharacter.Health <= 0)
                 {

@@ -25,24 +25,13 @@ namespace Heroes
                 Console.WriteLine($"Please start by giving your character a name:");
                 CurrentCharacter.Name = Console.ReadLine();
             }
-            PrintStats();
+            Stats.PrintStats();
             Console.WriteLine("Press any key to begin your adventure!");
             Console.ReadKey();
 
         }
 
-        public static void PrintStats()
-        {
-            Console.WriteLine("Your character's stats are:");
-            Console.WriteLine($"Name: {CurrentCharacter.Name}");
-            Console.WriteLine($"Health: {CurrentCharacter.Health}");
-            Console.WriteLine($"Damage: {CurrentCharacter.Damage}");
-            Console.WriteLine($"Armor: {CurrentCharacter.Armor}");
-            Console.WriteLine($"Level: {CurrentCharacter.Level}");
-            Console.WriteLine($"Experience: {CurrentCharacter.Experience}");
-            Console.WriteLine($"Gold: {CurrentCharacter.Gold}");
-            Console.WriteLine($"Strength: {CurrentCharacter.Strength}");
-        }
+
 
         public static IHero SetSelectedCharacter(int userChoice)
         {
