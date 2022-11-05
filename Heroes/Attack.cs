@@ -4,6 +4,8 @@ namespace Heroes
 {
     public class Attack
     {
+        //static Random rand = new Random(Guid.NewGuid().GetHashCode());
+
         public static int AttackMonster(MonsterCreation monster)
         {
             while (true)
@@ -60,12 +62,12 @@ namespace Heroes
                     weapon++;
                 }
                 var input = int.TryParse(Console.ReadLine(), out var iresult) ? iresult : 0;
-                var random = new Random();
                 var weaponChoice = CurrentCharacter.Inventory.ToList()[input - 1];
                 Console.WriteLine($"You have chosen to use {weaponChoice.Name}.");
                 Console.WriteLine($"You attack the {monster.Name}!");
-                monster.LoseHealth(monster, weaponChoice.Damage);
-                Console.WriteLine($"You deal {weaponChoice.Damage} damage to the {monster.Name}, he now has {monster.Health} health left.");
+                var damage = weaponChoice.CalculateDamage(weaponChoice);
+                monster.LoseHealth(monster, damage);
+                Console.WriteLine($"You deal {damage} damage to the {monster.Name}, he now has {monster.Health} health left.");
                 if (monster.Health < 1)
                 {
                     Console.WriteLine($"You have defeated the {monster.Name}!");
@@ -79,9 +81,9 @@ namespace Heroes
                     Adventure.AdventureStart();
                 }
                 Console.WriteLine($"The {monster.Name} attacks you!");
-                var goblinDamage = random.Next(5, 15);
+                var goblinDamage = monster.AttackPlayer(monster, CurrentCharacter);
                 Console.WriteLine($"The {monster.Name} deals {goblinDamage} damage to you.");
-                CurrentCharacter.LoseHealth(CurrentCharacter, CurrentCharacter.Health, goblinDamage);
+                CurrentCharacter.LoseHealth(CurrentCharacter, CurrentCharacter.Health, (int)goblinDamage);
                 Console.WriteLine($"You have {CurrentCharacter.Health} health left.");
                 if (CurrentCharacter.Health <= 0)
                 {
