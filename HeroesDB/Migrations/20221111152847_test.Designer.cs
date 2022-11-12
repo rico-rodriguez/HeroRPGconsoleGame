@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HeroesDB.Migrations
 {
     [DbContext(typeof(HeroesDBContext))]
-    [Migration("20221105231012_init")]
-    partial class init
+    [Migration("20221111152847_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,47 +24,6 @@ namespace HeroesDB.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("HeroModels.Archer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Armor")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Class")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Damage")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Gold")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Health")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Strength")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Archers");
-                });
-
             modelBuilder.Entity("HeroModels.Food", b =>
                 {
                     b.Property<int>("Id")
@@ -73,13 +32,10 @@ namespace HeroesDB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ArcherId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Heal")
                         .HasColumnType("int");
 
-                    b.Property<int>("MageId")
+                    b.Property<int?>("HeroId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -91,60 +47,9 @@ namespace HeroesDB.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArcherId");
+                    b.HasIndex("HeroId");
 
-                    b.HasIndex("MageId");
-
-                    b.ToTable("Foods");
-                });
-
-            modelBuilder.Entity("HeroModels.Mage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Armor")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Class")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Damage")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Gold")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Health")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Strength")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Mages");
+                    b.ToTable("Food");
                 });
 
             modelBuilder.Entity("HeroModels.Weapon", b =>
@@ -155,19 +60,16 @@ namespace HeroesDB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ArcherId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Damage")
                         .HasColumnType("int");
 
                     b.Property<int>("Degradation")
                         .HasColumnType("int");
 
-                    b.Property<int>("Level")
+                    b.Property<int?>("HeroId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MageId")
+                    b.Property<int>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -184,55 +86,113 @@ namespace HeroesDB.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArcherId");
+                    b.HasIndex("HeroId");
 
-                    b.HasIndex("MageId");
+                    b.ToTable("Weapon");
+                });
 
-                    b.ToTable("Weapons");
+            modelBuilder.Entity("UserRegistration.Hero", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Armor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Class")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Damage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Gold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Health")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Strength")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Hero");
+                });
+
+            modelBuilder.Entity("UserRegistration.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("HeroModels.Food", b =>
                 {
-                    b.HasOne("HeroModels.Archer", "Archer")
+                    b.HasOne("UserRegistration.Hero", null)
                         .WithMany("FoodSack")
-                        .HasForeignKey("ArcherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HeroModels.Mage", "Mage")
-                        .WithMany("FoodSack")
-                        .HasForeignKey("MageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Archer");
-
-                    b.Navigation("Mage");
+                        .HasForeignKey("HeroId");
                 });
 
             modelBuilder.Entity("HeroModels.Weapon", b =>
                 {
-                    b.HasOne("HeroModels.Archer", null)
+                    b.HasOne("UserRegistration.Hero", null)
                         .WithMany("WeaponSack")
-                        .HasForeignKey("ArcherId");
-
-                    b.HasOne("HeroModels.Mage", null)
-                        .WithMany("WeaponSack")
-                        .HasForeignKey("MageId");
+                        .HasForeignKey("HeroId");
                 });
 
-            modelBuilder.Entity("HeroModels.Archer", b =>
+            modelBuilder.Entity("UserRegistration.Hero", b =>
+                {
+                    b.HasOne("UserRegistration.User", "User")
+                        .WithMany("Heroes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("UserRegistration.Hero", b =>
                 {
                     b.Navigation("FoodSack");
 
                     b.Navigation("WeaponSack");
                 });
 
-            modelBuilder.Entity("HeroModels.Mage", b =>
+            modelBuilder.Entity("UserRegistration.User", b =>
                 {
-                    b.Navigation("FoodSack");
-
-                    b.Navigation("WeaponSack");
+                    b.Navigation("Heroes");
                 });
 #pragma warning restore 612, 618
         }

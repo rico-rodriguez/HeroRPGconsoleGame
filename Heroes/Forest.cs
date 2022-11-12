@@ -1,10 +1,11 @@
 ﻿using MonsterModels;
+using UserRegistration;
 
 namespace Heroes
 {
     public class Forest
     {
-        public static int Start()
+        public static int Start(User user, Hero hero)
         {
             Console.WriteLine("You have entered the forest!");
             Console.WriteLine("In the forest you have 3 options:");
@@ -18,15 +19,15 @@ namespace Heroes
                 {
                     case 1:
                         var goblin = MonsterCreation.goblin;
-                        Attack.AttackMonster(goblin);
+                        Attack.AttackMonster(goblin, user, hero);
                         break;
                     case 2:
                         var troll = MonsterCreation.troll;
-                        Attack.AttackMonster(troll);
+                        Attack.AttackMonster(troll, user, hero);
                         break;
                     case 3:
                         var dragon = MonsterCreation.dragon;
-                        Attack.AttackMonster(dragon);
+                        Attack.AttackMonster(dragon, user, hero);
                         break;
                     default:
                         Console.WriteLine("You have not selected a valid option. Please try again.");

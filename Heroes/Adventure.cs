@@ -1,8 +1,10 @@
-﻿namespace Heroes
+﻿using UserRegistration;
+
+namespace Heroes
 {
     public class Adventure
     {
-        public static int AdventureStart()
+        public static int AdventureStart(User user, Hero hero)
         {
             Console.WriteLine("You have 5 options:");
             Console.WriteLine("1. Fight in the forest");
@@ -16,10 +18,10 @@
                 switch (input)
                 {
                     case 1:
-                        Forest.Start();
+                        Forest.Start(user, hero);
                         break;
                     case 2:
-                        Mountain.Start();
+                        Mountain.Start(user, hero);
                         break;
                     case 3:
                         Sea.SeaStart();
@@ -28,7 +30,7 @@
                         Training.TrainingStart();
                         break;
                     case 5:
-                        Stats.StatsStart();
+                        Stats.StatsStart(hero, user);
                         break;
                     default:
                         Console.WriteLine("You have not selected a valid option. Please try again.");

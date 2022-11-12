@@ -4,39 +4,30 @@
 
 namespace HeroesDB.Migrations
 {
-    public partial class init : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Archers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Class = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Health = table.Column<int>(type: "int", nullable: false),
-                    Damage = table.Column<int>(type: "int", nullable: false),
-                    Armor = table.Column<int>(type: "int", nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    Experience = table.Column<int>(type: "int", nullable: false),
-                    Gold = table.Column<int>(type: "int", nullable: false),
-                    Strength = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Archers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Mages",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hero",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Class = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Health = table.Column<int>(type: "int", nullable: false),
@@ -45,15 +36,22 @@ namespace HeroesDB.Migrations
                     Level = table.Column<int>(type: "int", nullable: false),
                     Experience = table.Column<int>(type: "int", nullable: false),
                     Gold = table.Column<int>(type: "int", nullable: false),
-                    Strength = table.Column<int>(type: "int", nullable: false)
+                    Strength = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mages", x => x.Id);
+                    table.PrimaryKey("PK_Hero", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Hero_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Foods",
+                name: "Food",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -61,28 +59,20 @@ namespace HeroesDB.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Heal = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    MageId = table.Column<int>(type: "int", nullable: false),
-                    ArcherId = table.Column<int>(type: "int", nullable: false)
+                    HeroId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Foods", x => x.Id);
+                    table.PrimaryKey("PK_Food", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Foods_Archers_ArcherId",
-                        column: x => x.ArcherId,
-                        principalTable: "Archers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Foods_Mages_MageId",
-                        column: x => x.MageId,
-                        principalTable: "Mages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Food_Hero_HeroId",
+                        column: x => x.HeroId,
+                        principalTable: "Hero",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Weapons",
+                name: "Weapon",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -93,58 +83,47 @@ namespace HeroesDB.Migrations
                     Rarity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Degradation = table.Column<int>(type: "int", nullable: false),
-                    ArcherId = table.Column<int>(type: "int", nullable: true),
-                    MageId = table.Column<int>(type: "int", nullable: true)
+                    HeroId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Weapons", x => x.Id);
+                    table.PrimaryKey("PK_Weapon", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Weapons_Archers_ArcherId",
-                        column: x => x.ArcherId,
-                        principalTable: "Archers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Weapons_Mages_MageId",
-                        column: x => x.MageId,
-                        principalTable: "Mages",
+                        name: "FK_Weapon_Hero_HeroId",
+                        column: x => x.HeroId,
+                        principalTable: "Hero",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Foods_ArcherId",
-                table: "Foods",
-                column: "ArcherId");
+                name: "IX_Food_HeroId",
+                table: "Food",
+                column: "HeroId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Foods_MageId",
-                table: "Foods",
-                column: "MageId");
+                name: "IX_Hero_UserId",
+                table: "Hero",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Weapons_ArcherId",
-                table: "Weapons",
-                column: "ArcherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Weapons_MageId",
-                table: "Weapons",
-                column: "MageId");
+                name: "IX_Weapon_HeroId",
+                table: "Weapon",
+                column: "HeroId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Foods");
+                name: "Food");
 
             migrationBuilder.DropTable(
-                name: "Weapons");
+                name: "Weapon");
 
             migrationBuilder.DropTable(
-                name: "Archers");
+                name: "Hero");
 
             migrationBuilder.DropTable(
-                name: "Mages");
+                name: "User");
         }
     }
 }

@@ -1,22 +1,23 @@
 ﻿using MonsterModels;
-using static Heroes.SelectCharacter;
+using UserRegistration;
 namespace Heroes
 {
     public class Attack
     {
         //static Random rand = new Random(Guid.NewGuid().GetHashCode());
 
-        public static int AttackMonster(MonsterCreation monster)
+        public static int AttackMonster(MonsterCreation monster, User user, Hero hero)
         {
             while (true)
             {
+                var CurrentCharacter = SelectCharacter.CurrentHero;
                 Console.WriteLine($"You open your inventory to see you have {CurrentCharacter.WeaponSack.ToList().Count} weapons.");
                 if (CurrentCharacter.WeaponSack.ToList().Count == 0)
                 {
                     Console.WriteLine($"You have no items in your inventory. You cannot attack the {monster.Name}.");
                     Console.WriteLine("Press any key to continue your adventure!");
                     Console.ReadKey();
-                    Adventure.AdventureStart();
+                    Adventure.AdventureStart(user, hero);
                 }
                 else
                 {
@@ -27,7 +28,7 @@ namespace Heroes
                     switch (input)
                     {
                         case 1:
-                            UseWeapon(monster);
+                            UseWeapon(monster, user, hero);
                             break;
                         case 2:
                             Console.WriteLine("Coward!");
@@ -36,7 +37,7 @@ namespace Heroes
                             Console.WriteLine($"You have {CurrentCharacter.Health} health left.");
                             Console.WriteLine("Press any key to continue your adventure!");
                             Console.ReadKey();
-                            Adventure.AdventureStart();
+                            Adventure.AdventureStart(user, hero);
                             break;
                         default:
                             Console.WriteLine("You have not selected a valid option. Please try again.");
@@ -50,10 +51,12 @@ namespace Heroes
             }
         }
 
-        private static void UseWeapon(MonsterCreation monster)
+        private static void UseWeapon(MonsterCreation monster, User user, Hero hero)
         {
             while (true)
             {
+
+                var CurrentCharacter = SelectCharacter.CurrentHero;
                 Console.WriteLine("Which weapon would you like to use?");
                 var weapon = 1;
                 foreach (var item in CurrentCharacter.WeaponSack)
@@ -74,7 +77,7 @@ namespace Heroes
                 {
                     Console.WriteLine($"Your {weaponChoice.Name} has broken! A magical force teleports you back to your village.");
                     CurrentCharacter.WeaponSack.Remove(weaponChoice);
-                    Adventure.AdventureStart();
+                    Adventure.AdventureStart(user, hero);
                 }
                 if (monster.Health < 1)
                 {
@@ -86,7 +89,7 @@ namespace Heroes
                     CurrentCharacter.GainExperience(CurrentCharacter, monster.Experience);
                     Console.WriteLine("Press any key to continue your adventure!");
                     Console.ReadKey();
-                    Adventure.AdventureStart();
+                    Adventure.AdventureStart(user, hero);
                 }
                 Console.WriteLine($"The {monster.Name} attacks you!");
                 var monsterDamage = monster.AttackPlayer(monster, CurrentCharacter);
@@ -116,7 +119,7 @@ namespace Heroes
                     case 2:
                         Console.WriteLine("Press any key to continue your adventure!");
                         Console.ReadKey();
-                        Adventure.AdventureStart();
+                        Adventure.AdventureStart(user, hero);
                         break;
                 }
             }

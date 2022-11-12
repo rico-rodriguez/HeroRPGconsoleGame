@@ -3,6 +3,7 @@
 
     public class Weapon
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Damage { get; set; }
         public int Level { get; set; }
@@ -18,7 +19,7 @@
             Level = level;
             Rarity = rarity;
             Type = type;
-            Degradation = 0;
+            Degradation = 10;
         }
 
         public Weapon()

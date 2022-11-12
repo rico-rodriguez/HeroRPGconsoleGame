@@ -1,17 +1,17 @@
-﻿using HeroModels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using UserRegistration;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace HeroesDB
 {
     public class HeroesDBContext : DbContext
     {
-        public static DbSet<HeroModels.Mage> Mages { get; set; }
-        public static DbSet<HeroModels.Archer> Archers { get; set; }
-        public static DbSet<HeroModels.Weapon> Weapons { get; set; }
-        public static DbSet<HeroModels.Food> Foods { get; set; }
-        public DbSet<UserRegistration.UserController> UserControllers { get; set; }
-        public DbSet<HeroCreation> HeroCreations { get; set; }
+
+        public DbSet<User> User { get; set; }
+        public DbSet<Hero> Hero { get; set; }
+
+
         public HeroesDBContext()
         {
 
@@ -36,6 +36,13 @@ namespace HeroesDB
                 var options = new DbContextOptionsBuilder<HeroesDBContext>().UseSqlServer(cnstr);
                 optionsBuilder.UseSqlServer(cnstr);
             }
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>(Entity =>
+            {
+                Entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            });
         }
     }
 }

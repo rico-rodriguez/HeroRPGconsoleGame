@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heroes", "Heroes\Heroes.csproj", "{E17EDEF9-7F41-4F4D-93C4-B0CF0A15CBC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heroes", "Heroes\Heroes.csproj", "{E17EDEF9-7F41-4F4D-93C4-B0CF0A15CBC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroModels", "HeroModels\HeroModels.csproj", "{F90227B6-BF47-4717-9E9E-34681F09A991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroModels", "HeroModels\HeroModels.csproj", "{F90227B6-BF47-4717-9E9E-34681F09A991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonsterModels", "MonsterModels\MonsterModels.csproj", "{820F7CF6-4F4B-40E4-88CE-6A80670431B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonsterModels", "MonsterModels\MonsterModels.csproj", "{820F7CF6-4F4B-40E4-88CE-6A80670431B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroesDB", "HeroesDB\HeroesDB.csproj", "{E19CB720-E4FC-4D94-978F-CBC24CFCDB0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserRegistration", "UserRegistration\UserRegistration.csproj", "{ADEA2EEE-4408-41FE-8C92-22428CCD082F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{820F7CF6-4F4B-40E4-88CE-6A80670431B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{820F7CF6-4F4B-40E4-88CE-6A80670431B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{820F7CF6-4F4B-40E4-88CE-6A80670431B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19CB720-E4FC-4D94-978F-CBC24CFCDB0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19CB720-E4FC-4D94-978F-CBC24CFCDB0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19CB720-E4FC-4D94-978F-CBC24CFCDB0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19CB720-E4FC-4D94-978F-CBC24CFCDB0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEA2EEE-4408-41FE-8C92-22428CCD082F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEA2EEE-4408-41FE-8C92-22428CCD082F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEA2EEE-4408-41FE-8C92-22428CCD082F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEA2EEE-4408-41FE-8C92-22428CCD082F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,4 @@
 ﻿using HeroModels;
-using static Heroes.SelectCharacter;
 
 namespace Heroes
 {
@@ -7,6 +6,7 @@ namespace Heroes
     {
         public static void SeaStart()
         {
+            var CurrentCharacter = SelectCharacter.CurrentHero;
             Console.WriteLine("Press any key to set sail and catch some fish!");
             Console.ReadKey();
             Console.WriteLine("You set sail and catch some fish!");

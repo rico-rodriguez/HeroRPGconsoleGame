@@ -4,55 +4,55 @@ namespace HeroModels
 {
     public class Archer : IHero
     {
-        public string? Name { get; set; }
-        public string Class { get; set; }
+        public override string? Name { get; set; }
+        public override string Class { get; set; }
 
-        public int Health
+        public override int Health
         { get; set; }
-        public int Damage
+        public override int Damage
         { get; set; }
-        public int Armor
+        public override int Armor
         { get; set; }
-        public int Level
+        public override int Level
         { get; set; }
-        public int Experience
+        public override int Experience
         { get; set; }
-        public int Gold
+        public override int Gold
         { get; set; }
-        public int Strength
+        public override int Strength
         { get; set; }
 
-        public List<Weapon> WeaponSack { get; set; }
-        public List<Food> FoodSack { get; set; }
+        public override List<Weapon> WeaponSack { get; set; }
+        public override List<Food> FoodSack { get; set; }
 
-        public string Attack(IHero hero)
+        public override string Attack(IHero hero)
         {
             throw new NotImplementedException();
         }
 
-        public int GainGold(IHero currentCharacter, int gold)
+        public override int GainGold(IHero currentCharacter, int gold)
         {
             throw new NotImplementedException();
         }
 
-        public string GainHealth(IHero hero, int health)
+        public override string GainHealth(IHero hero, int health)
         {
             throw new NotImplementedException();
         }
-        public string LoseHealth(IHero hero, int health, int damage)
+        public override string LoseHealth(IHero hero, int health, int damage)
         {
             hero.Health -= damage;
             return $"You have taken {damage} damage. Your health is now at {hero.Health}!";
         }
 
-        public string LevelUp(IHero hero)
+        public override string LevelUp(IHero hero)
         {
             hero.Level += 1;
             var level = hero.Level;
             return $"Congratulations! You are now level {Level}";
         }
 
-        public int GainExperience(IHero currentCharacter, int experience)
+        public override int GainExperience(IHero currentCharacter, int experience)
         {
             throw new NotImplementedException();
         }

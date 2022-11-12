@@ -1,19 +1,20 @@
-﻿using static Heroes.SelectCharacter;
+﻿using UserRegistration;
 
 namespace Heroes
 {
     public class Stats
     {
-        public static int StatsStart()
+        public static int StatsStart(Hero hero, User user)
         {
             Console.WriteLine("You have chosen to check your character's stats!");
             PrintStats();
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
-            return Adventure.AdventureStart();
+            return Adventure.AdventureStart(SelectCharacter.CurrentUser, SelectCharacter.CurrentHero);
         }
         public static void PrintStats()
         {
+            var CurrentCharacter = SelectCharacter.CurrentHero;
             Console.WriteLine("Your character's stats are:");
             Console.WriteLine($"Name: {CurrentCharacter.Name}");
             Console.WriteLine($"Health: {CurrentCharacter.Health}");

@@ -3,6 +3,7 @@
 
     public class Food
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Heal { get; set; }
         public int Quantity { get; set; }

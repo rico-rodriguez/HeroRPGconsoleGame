@@ -1,9 +1,8 @@
-﻿using static Heroes.SelectCharacter;
-
-namespace Heroes
+﻿namespace Heroes
 {
     public class Training
     {
+
         public static int TrainingStart()
         {
             Console.WriteLine("You have chosen to train your character!");
@@ -21,22 +20,24 @@ namespace Heroes
 
         private static int HealthStart()
         {
+            var CurrentCharacter = SelectCharacter.CurrentHero;
             CurrentCharacter.GainHealth(CurrentCharacter, 100);
             Console.WriteLine($"You have replenished your health! You are now at {CurrentCharacter.Health}");
             Console.WriteLine("Press any key to continue your adventure!");
             Console.ReadKey();
-            return Adventure.AdventureStart();
+            return Adventure.AdventureStart(SelectCharacter.CurrentUser, SelectCharacter.CurrentHero);
         }
 
         private static int StrengthStart()
         {
+            var CurrentCharacter = SelectCharacter.CurrentHero;
             Random random = new Random();
             CurrentCharacter.Strength += random.Next(3, 5);
             Console.WriteLine("You have trained your strength!");
             Console.WriteLine($"You are now level {CurrentCharacter.Strength}!");
             Console.WriteLine("Press any key to continue your adventure!");
             Console.ReadKey();
-            return Adventure.AdventureStart();
+            return Adventure.AdventureStart(SelectCharacter.CurrentUser, SelectCharacter.CurrentHero);
 
         }
 

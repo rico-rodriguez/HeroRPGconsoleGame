@@ -4,43 +4,52 @@ namespace HeroModels
 {
     public class Mage : IHero
     {
-        public string? Name { get; set; }
-        public string Class { get; set; }
+        public Mage(string? name)
+        {
+            Name = name;
+        }
 
-        public int Health { get; set; }
+        public Mage()
+        {
+        }
 
-        public int Damage { get; set; }
+        public override string? Name { get; set; }
+        public override string Class { get; set; }
 
-        public int Armor
+        public override int Health { get; set; }
+
+        public override int Damage { get; set; }
+
+        public override int Armor
         { get; set; }
-        public int Level
+        public override int Level
         { get; set; }
-        public int Experience
+        public override int Experience
         { get; set; }
-        public int Gold
+        public override int Gold
         { get; set; }
-        public int Strength
+        public override int Strength
         { get; set; }
 
-        public List<Weapon> WeaponSack { get; set; }
-        public List<Food> FoodSack { get; set; }
+        public override List<Weapon> WeaponSack { get; set; }
+        public override List<Food> FoodSack { get; set; }
 
-        public string Attack(IHero hero)
+        public override string Attack(IHero hero)
         {
             return "";
         }
 
-        public int GainExperience(IHero hero, int experience)
+        public override int GainExperience(IHero hero, int experience)
         {
             return hero.Experience += experience;
         }
 
-        public int GainGold(IHero hero, int gold)
+        public override int GainGold(IHero hero, int gold)
         {
             return hero.Gold += gold;
         }
 
-        public string GainHealth(IHero hero, int health)
+        public override string GainHealth(IHero hero, int health)
         {
             hero.Health += health;
             if (hero.Health >= 100)
@@ -49,7 +58,7 @@ namespace HeroModels
             }
             return $"Your health is now at {hero.Health}!";
         }
-        public string LoseHealth(IHero hero, int health, int damage)
+        public override string LoseHealth(IHero hero, int health, int damage)
         {
             hero.Health -= damage;
             if (hero.Health <= 0)
@@ -60,7 +69,7 @@ namespace HeroModels
             return $"You have taken {damage} damage. Your health is now at {hero.Health}!";
         }
 
-        public string LevelUp(IHero hero)
+        public override string LevelUp(IHero hero)
         {
             hero.Level += 1;
             var level = hero.Level;

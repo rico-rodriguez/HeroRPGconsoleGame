@@ -1,20 +1,20 @@
 ﻿using HeroModels;
-using static Heroes.SelectCharacter;
+using UserRegistration;
 
 namespace Heroes
 {
     public class Mountain
     {
-        public static void Start()
+        public static void Start(User user, Hero hero)
         {
             Console.WriteLine("You have entered the mountains!");
             Console.WriteLine("Here you can loot a chest to get a weapon.");
             Console.WriteLine("Be warned, This is a [dangerous] activity!");
             Console.WriteLine("Press any key to continue!");
             Console.ReadKey();
-            Scavenge();
+            Scavenge(user, hero);
         }
-        public static void Scavenge()
+        public static void Scavenge(User user, Hero hero)
         {
             Console.WriteLine("Type 'confirm' to scavenge for items.");
             Console.WriteLine("Type anything else to flee.");
@@ -23,6 +23,7 @@ namespace Heroes
             {
                 case "confirm":
                     {
+                        var CurrentCharacter = SelectCharacter.CurrentHero;
                         //Damage player for a percentage of their health
                         var damage = CurrentCharacter.Health - (CurrentCharacter.Health * 0.70);
                         CurrentCharacter.LoseHealth(CurrentCharacter, CurrentCharacter.Health, (int)damage);
@@ -60,11 +61,11 @@ namespace Heroes
                         Console.WriteLine($"You have found a [level {weapon.Level}] [{weapon.Rarity}] ({weapon.Type} {weapon.Name})! It has {weapon.Degradation} uses left.");
                         Console.WriteLine("Press any key to continue your adventure!");
                         Console.ReadKey();
-                        Adventure.AdventureStart();
+                        Adventure.AdventureStart(user, hero);
                         break;
                     }
                 default:
-                    Adventure.AdventureStart();
+                    Adventure.AdventureStart(user, hero);
                     break;
             }
         }
