@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using UserRegistration;
 
 namespace Heroes
 {
@@ -20,8 +19,6 @@ namespace Heroes
 
             var charSelect = new SelectCharacter();
             charSelect.WelcomeScreen();
-            Adventure.AdventureStart(SelectCharacter.CurrentUser, (Hero)SelectCharacter.CurrentHero);
-
         }
     }
 

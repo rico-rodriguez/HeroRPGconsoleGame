@@ -44,7 +44,7 @@ namespace Heroes
             }
         }
 
-        private void Register()
+        private DbContext Register()
         {
             Console.WriteLine("Please enter a username");
             string username = Console.ReadLine();
@@ -54,23 +54,22 @@ namespace Heroes
             user.Username = username;
             user.Password = password;
             var hero = new Hero();
-            using (var context = new HeroesDBContext(_optionsBuilder.Options))
-            {
-                {
-                    hero.User = user;
-                    context.Hero.Add(hero);
-                    user.Heroes.Add(hero);
-                    context.User.Add(user);
-                    context.SaveChanges();
-                }
-                CurrentHero = context.Hero.FirstOrDefault(h => h.User.Username == username);
-                CurrentUser = context.User.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
-                Console.WriteLine("User created");
-                Adventure.AdventureStart(CurrentUser, CurrentHero);
-            }
+            using var context = new HeroesDBContext(_optionsBuilder.Options);
+            hero.User = user;
+            context.Hero.Add(hero);
+            user.Heroes.Add(hero);
+            context.User.Add(user);
+            context.SaveChanges();
+            CurrentHero = context.Hero.FirstOrDefault(h => h.User.Username == username);
+            CurrentUser = context.User.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
+            Console.WriteLine("User created");
+            Adventure.AdventureStart(CurrentUser, CurrentHero);
+
+
+            return context;
         }
 
-        private void LogIn()
+        private DbContext LogIn()
         {
             Console.WriteLine("Please enter your username");
             string username = Console.ReadLine();
@@ -89,6 +88,7 @@ namespace Heroes
             context.SaveChanges();
             Adventure.AdventureStart(CurrentUser, CurrentHero);
 
+            return context;
         }
     }
 }

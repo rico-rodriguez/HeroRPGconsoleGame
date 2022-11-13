@@ -35,6 +35,7 @@ namespace UserRegistration
 
         public virtual User User { get; set; }
 
+
         public override List<Weapon> WeaponSack { get; set; } = new() { Weapon.ElectricityWand, Weapon.ElementalStaff };
         public override List<Food> FoodSack { get; set; } = new() { Food.trout, Food.salmon };
 

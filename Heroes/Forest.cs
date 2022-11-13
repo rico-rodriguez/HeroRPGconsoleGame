@@ -15,19 +15,20 @@ namespace Heroes
             do
             {
                 var input = int.TryParse(Console.ReadLine(), out var iresult) ? iresult : 0;
+                var attack = new Attack();
                 switch (input)
                 {
                     case 1:
                         var goblin = MonsterCreation.goblin;
-                        Attack.AttackMonster(goblin, user, hero);
+                        attack.AttackMonster(goblin, user, hero);
                         break;
                     case 2:
                         var troll = MonsterCreation.troll;
-                        Attack.AttackMonster(troll, user, hero);
+                        attack.AttackMonster(troll, user, hero);
                         break;
                     case 3:
                         var dragon = MonsterCreation.dragon;
-                        Attack.AttackMonster(dragon, user, hero);
+                        attack.AttackMonster(dragon, user, hero);
                         break;
                     default:
                         Console.WriteLine("You have not selected a valid option. Please try again.");

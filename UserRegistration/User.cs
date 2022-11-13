@@ -15,7 +15,9 @@ namespace UserRegistration
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-        public List<Hero> Heroes { get; set; }
+        public virtual List<Hero> Heroes { get; set; }
+
+
     }
 }
 

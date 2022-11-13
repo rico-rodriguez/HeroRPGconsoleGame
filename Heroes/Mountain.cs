@@ -1,10 +1,20 @@
-﻿using HeroModels;
+﻿using HeroesDB;
+using HeroModels;
+using Microsoft.EntityFrameworkCore;
 using UserRegistration;
 
 namespace Heroes
 {
     public class Mountain
     {
+        private string _cnstr;
+        private static DbContextOptionsBuilder _optionsBuilder;
+
+        public Mountain()
+        {
+            _cnstr = Program._configuration["ConnectionStrings:HeroesDB"];
+            _optionsBuilder = new DbContextOptionsBuilder<HeroesDBContext>().UseSqlServer(_cnstr);
+        }
         public static void Start(User user, Hero hero)
         {
             Console.WriteLine("You have entered the mountains!");
@@ -16,6 +26,8 @@ namespace Heroes
         }
         public static void Scavenge(User user, Hero hero)
         {
+            var mountain = new Mountain();
+            var context = new HeroesDBContext(_optionsBuilder.Options);
             Console.WriteLine("Type 'confirm' to scavenge for items.");
             Console.WriteLine("Type anything else to flee.");
             var input = Console.ReadLine();
@@ -24,9 +36,12 @@ namespace Heroes
                 case "confirm":
                     {
                         var CurrentCharacter = SelectCharacter.CurrentHero;
+                        var loggedinuser = SelectCharacter.CurrentUser;
                         //Damage player for a percentage of their health
                         var damage = CurrentCharacter.Health - (CurrentCharacter.Health * 0.70);
+                        context.User.Update(user);
                         CurrentCharacter.LoseHealth(CurrentCharacter, CurrentCharacter.Health, (int)damage);
+                        context.SaveChanges();
                         Console.WriteLine($"You have lost {damage} health.");
                         Console.WriteLine($"You have {CurrentCharacter.Health} health left.");
                         Console.WriteLine("Press any key to collect your loot!");
@@ -57,7 +72,10 @@ namespace Heroes
                         weapon.Type = weaponType[random.Next(0, weaponType.Count)];
                         weapon.Damage = weaponDamage[random.Next(0, weaponDamage.Count)];
                         weapon.Level = weaponLevel[random.Next(0, weaponLevel.Count)];
+                        context.User.Update(loggedinuser);
+                        context.Hero.Update(CurrentCharacter);
                         CurrentCharacter.WeaponSack.Add(weapon);
+                        context.SaveChanges();
                         Console.WriteLine($"You have found a [level {weapon.Level}] [{weapon.Rarity}] ({weapon.Type} {weapon.Name})! It has {weapon.Degradation} uses left.");
                         Console.WriteLine("Press any key to continue your adventure!");
                         Console.ReadKey();
